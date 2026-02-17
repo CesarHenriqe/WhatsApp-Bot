@@ -4,22 +4,21 @@ services:
 
   postgres:
     image: postgres:15
+    container_name: botwhats-postgres
     environment:
       POSTGRES_DB: botwhats
-      POSTGRES_USER: botuser
-      POSTGRES_PASSWORD: botpass
+      POSTGRES_USER: bot
+      POSTGRES_PASSWORD: bot123
     ports:
       - "5432:5432"
 
   zookeeper:
-    image: confluentinc/cp-zookeeper:latest
+    image: confluentinc/cp-zookeeper:7.5.0
     environment:
       ZOOKEEPER_CLIENT_PORT: 2181
 
   kafka:
-    image: confluentinc/cp-kafka:latest
-    depends_on:
-      - zookeeper
+    image: confluentinc/cp-kafka:7.5.0
     ports:
       - "9092:9092"
     environment:
